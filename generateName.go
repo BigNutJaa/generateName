@@ -6,19 +6,19 @@ import (
 	"strings"
 )
 
-func Generate(name string, number string) string {
+func Generate(name string, number string) (string, error) {
 
 	if _, err := strconv.ParseFloat(name, 64); err == nil {
-		fmt.Printf("%q looks like a number.\n", name)
+		return "", err
 	}
 
 	if _, err := strconv.ParseFloat(number, 64); err != nil {
-		fmt.Printf("%q not a number.\n", number)
+		return "", err
 	}
 
 	var nameUPPER string = strings.ToUpper(name)
 	new, _ := strconv.ParseFloat(number, 64)
 	result := nameUPPER + "-" + fmt.Sprintf("%f", new)
-	return result
+	return result, nil
 
 }
